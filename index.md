@@ -116,4 +116,21 @@ class Events {
     this.addEvent(key, fn, true, ...args)
   }
 }
+```   
+
+排序算法：   
+快速排序
+```js
+function quickSort(arr) {
+    if (arr.length <= 1) return arr
+    let pivotIndex = Math.floor(arr.length / 2)
+    let pivot = arr.splice(pivotIndex, 1)[0]
+    let left = [], right = []
+
+    for (let val of arr) {
+        if (val < pivot) left.push(val)
+        else right.push(val)
+    }
+    return quickSort(left).concat([pivot], quickSort(right))
+}
 ```
