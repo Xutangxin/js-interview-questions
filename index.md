@@ -73,7 +73,39 @@ function _instanceof(left, right) {
 }
 ```
 
-eventBus:
+eventBus:   
+简陋版：
+```js
+class EventBus {
+    constructor() {
+        this.events = {}
+    }
+
+    on(event, fn) {
+        this.events[event] = fn
+    }
+
+    emit(event) {
+        if (this.events[event]) {
+            let fn = this.events[event]
+            fn()
+        }
+    }
+
+    off(event) {
+        if (this.events[event]) {
+            delete this.events[event]
+        }
+    }
+
+    once(event, fn) {
+        this.on(event, fn)
+        this.emit(event)
+        this.off(event)
+    }
+}
+```
+标准版：
 ```js
 class Events {
   constructor() {
