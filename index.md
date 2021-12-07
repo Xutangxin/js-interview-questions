@@ -166,3 +166,34 @@ function quickSort(arr) {
     return quickSort(left).concat([pivot], quickSort(right))
 }
 ```
+冒泡排序：
+```js
+function bubbleSort(arr) {
+    let len = arr.length;
+    for (let i = 0; i < len; i++) {
+        for (let j = 0; j < len - 1 - i; j++) {
+            if (arr[j] > arr[j + 1]) {
+                [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+            }
+        }
+    }
+    return arr;
+}
+```
+插入排序：
+```js
+function insertionSort(arr) {
+    let len = arr.length;
+    let preIndex, curr;
+    for (let i = 1; i < len; i++) {
+        preIndex = i - 1;
+        curr = arr[i];
+        while (preIndex >= 0 && arr[preIndex] > curr) {
+            arr[preIndex + 1] = arr[preIndex];
+            preIndex--;
+        }
+        arr[preIndex + 1] = curr;
+    }
+    return arr;
+}
+```
