@@ -196,4 +196,15 @@ function insertionSort(arr) {
     }
     return arr;
 }
+```   
+call实现：
+```js
+Function.prototype.myCall = function (context, ...args) {
+    context = context || window
+    let fn = Symbol()
+    context[fn] = this
+    let res = context[fn](...args)
+    delete context[fn]
+    return res
+}
 ```
