@@ -208,3 +208,16 @@ Function.prototype.myCall = function (context, ...args) {
     return res
 }
 ```
+or:
+```js
+Function.prototype.myCall = function () {
+    let args = Array.prototype.slice.call(arguments)
+    let obj = args.shift()
+    let self = this
+
+    obj[fn] = self
+    let res = obj[fn](...args)
+    delete obj[fn]
+    return res
+}
+```
