@@ -221,3 +221,30 @@ Function.prototype.myCall = function () {
     return res
 }
 ```
+apply:
+```js
+Function.prototype.myApply = function () {
+    let args = [...arguments]
+    let obj = args.shift()
+    let self = this
+    obj['fn'] = self
+
+    let res
+    if (args.length) res = obj['fn'](...args[0])
+    else res = obj['fn']()
+    delete obj['fn']
+    return res
+}
+```
+bind:
+```js
+Function.prototype.myBind = function () {
+    let self = this
+    let args = [...arguments]
+    let obj = args.shift()
+
+    return function () {
+        return self.apply(obj, args)
+    }
+}
+```
